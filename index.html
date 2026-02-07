@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>JDD FIT — Suplementos Deportivos</title>
+<title>JDD FITNESS</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <style>
 /* ========== RESET & VARS ========== */
@@ -86,6 +86,8 @@ section{padding:100px 48px;position:relative;}
 .producto-card:hover{transform:translateY(-6px);border-color:transparent;box-shadow:0 8px 32px rgba(0,255,136,.2);}
 .producto-card:hover::before{opacity:1;}
 .producto-img{height:200px;background:linear-gradient(135deg,#1a1a1a,#0f0f0f);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.producto-img img{transition:transform .4s ease;}
+.producto-card:hover .producto-img img{transform:scale(1.08);}
 .producto-img::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 50%, rgba(0,255,136,.08) 0%, transparent 60%);}
 .producto-img-icon{font-size:3.5rem;position:relative;z-index:2;}
 .producto-badge{position:absolute;top:12px;right:12px;background:var(--neon-orange);color:#000;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border-radius:20px;font-weight:700;z-index:3;}
@@ -140,6 +142,23 @@ section{padding:100px 48px;position:relative;}
 
 /* ========== FOOTER ========== */
 footer{background:var(--black2);border-top:1px solid rgba(255,255,255,.08);padding:56px 48px 28px;}
+
+/* ========== FAQ ========== */
+.faq-item{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:var(--r);margin-bottom:16px;overflow:hidden;transition:border-color .3s;}
+.faq-item:hover{border-color:rgba(0,255,136,.3);}
+.faq-question{display:flex;justify-content:space-between;align-items:center;padding:24px 28px;cursor:pointer;user-select:none;}
+.faq-question h3{font-family:var(--fb);font-size:1.05rem;color:var(--text);font-weight:600;letter-spacing:.02em;}
+.faq-icon{width:32px;height:32px;border-radius:50%;background:rgba(0,255,136,.1);border:1px solid rgba(0,255,136,.25);display:flex;align-items:center;justify-content:center;font-size:1.4rem;color:var(--neon-green);transition:transform .3s,background .3s;}
+.faq-item.active .faq-icon{transform:rotate(45deg);background:rgba(0,255,136,.2);}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .4s ease;}
+.faq-item.active .faq-answer{max-height:2000px;padding:0 28px 28px;}
+.faq-benefit{display:flex;gap:16px;align-items:flex-start;margin-bottom:20px;padding:16px;background:rgba(0,255,136,.03);border-left:3px solid var(--neon-green);border-radius:6px;}
+.faq-benefit:last-child{margin-bottom:0;}
+.faq-benefit-icon{font-size:1.6rem;flex-shrink:0;margin-top:2px;}
+.faq-benefit strong{display:block;color:var(--text);font-size:.88rem;margin-bottom:6px;font-weight:600;}
+.faq-benefit p,.faq-answer > p{font-size:.8rem;color:var(--muted);line-height:1.7;}
+
+
 .footer-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:48px;}
 .footer-brand .fb-logo{font-family:var(--fd);font-size:1.8rem;color:var(--neon-green);letter-spacing:.06em;margin-bottom:12px;}
 .footer-brand p{font-size:.78rem;color:var(--dim);line-height:1.7;max-width:300px;}
@@ -159,7 +178,7 @@ footer{background:var(--black2);border-top:1px solid rgba(255,255,255,.08);paddi
 
 /* ========== RESPONSIVE ========== */
 @media(max-width:1000px){
-  .productos-grid{grid-template-columns:repeat(3,1fr);}
+  .productos-grid{grid-template-columns:repeat(2,1fr);}
   .planes-grid{grid-template-columns:1fr 1fr;}
 }
 @media(max-width:700px){
@@ -167,7 +186,7 @@ footer{background:var(--black2);border-top:1px solid rgba(255,255,255,.08);paddi
   .nav-links{gap:16px;}
   .nav-links a{font-size:.65rem;}
   section{padding:72px 22px;}
-  .productos-grid{grid-template-columns:repeat(2,1fr);}
+  .productos-grid{grid-template-columns:1fr!important;}
   .planes-grid{grid-template-columns:1fr;}
   .footer-inner{grid-template-columns:1fr;}
   .ofertas-timer{flex-wrap:wrap;gap:12px;}
@@ -184,12 +203,12 @@ footer{background:var(--black2);border-top:1px solid rgba(255,255,255,.08);paddi
 <!-- NAV -->
 <nav>
   <a href="#" class="nav-logo">
-    <div class="nav-logo-icon">A</div>
-    <div class="nav-logo-text">JDD FIT</div>
+    <div class="nav-logo-icon">JDD</div>
+    <div class="nav-logo-text"> Fitness</div>
   </a>
   <ul class="nav-links">
     <li><a href="#productos">Productos</a></li>
-    <li><a href="#ofertas">Ofertas</a></li>
+    <li><a href="#combos">Combos</a></li>
     <li><a href="#planes">Entrenamientos</a></li>
   </ul>
 </nav>
@@ -205,7 +224,7 @@ footer{background:var(--black2);border-top:1px solid rgba(255,255,255,.08);paddi
     <p class="hero-sub">Suplementos deportivos de alta calidad para alcanzar tus objetivos</p>
     <div class="hero-cta">
       <a href="#productos" class="btn-primary">🔥 Ver Productos</a>
-      <a href="#planes" class="btn-outline">💪 Planes de Entrenamiento</a>
+      <a href="#combos" class="btn-outline">💼 Ver Combos</a>
     </div>
   </div>
 </section>
@@ -213,8 +232,8 @@ footer{background:var(--black2);border-top:1px solid rgba(255,255,255,.08);paddi
 <!-- STATS BAR -->
 <div class="stats-bar">
   <div class="stats-wrap">
-    <div class="stat-item"><div class="stat-num">20+</div><div class="stat-label">Clientes Activos</div></div>
-    <div class="stat-item"><div class="stat-num">20+</div><div class="stat-label">Productos</div></div>
+    <div class="stat-item"><div class="stat-num">25+</div><div class="stat-label">Clientes Activos</div></div>
+    <div class="stat-item"><div class="stat-num">100+</div><div class="stat-label">Productos</div></div>
     <div class="stat-item"><div class="stat-num">98%</div><div class="stat-label">Satisfacción</div></div>
     <div class="stat-item"><div class="stat-num">24/7</div><div class="stat-label">Atención</div></div>
   </div>
@@ -224,130 +243,74 @@ footer{background:var(--black2);border-top:1px solid rgba(255,255,255,.08);paddi
 <section id="productos">
   <div class="sec-label">Catálogo Premium</div>
   <h2 class="sec-title">Nuestros <span>Productos</span></h2>
-  <div class="productos-grid">
+  <div class="productos-grid" style="grid-template-columns:repeat(3,1fr);max-width:1000px;">
     
     <div class="producto-card">
-      <div class="producto-img">
-        <div class="producto-img-icon">💪</div>
-        <div class="producto-badge">-25%</div>
+      <div class="producto-img" style="background:none;padding:20px;">
+        <img src="images/wheyproteinmarve.jpeg" alt="Whey Protein Mervick" style="width:100%;height:100%;object-fit:contain;">
       </div>
       <div class="producto-body">
         <h3>WHEY PROTEIN</h3>
-        <p>Proteína de suero de alta calidad, 25g por porción</p>
+        <p>Mervick Lab — 24g proteína por porción</p>
         <div class="producto-footer">
-          <div>
-            <div class="producto-price"><sup>$</sup>15.990</div>
-            <div class="producto-price-old">$21.990</div>
-          </div>
-          <a href="https://wa.me/549 5911-4392?text=Hola!%20Quiero%20comprar%20WHEY%20PROTEIN" target="_blank" class="btn-comprar">Comprar</a>
+          <div><div class="producto-price"><sup>$</sup>42.000</div></div>
+          <a href="https://wa.me/5491159114392?text=Hola!%20Quiero%20consultar%20precio%20de%20WHEY%20PROTEIN%20MERVICK" target="_blank" class="btn-comprar">Comprar</a>
         </div>
       </div>
     </div>
 
     <div class="producto-card">
-      <div class="producto-img">
-        <div class="producto-img-icon">⚡</div>
-        <div class="producto-badge">NUEVO</div>
+      <div class="producto-img" style="background:none;padding:20px;">
+        <img src="images/wheyproteinena.jpeg" alt="Whey Protein ENA" style="width:100%;height:100%;object-fit:contain;">
       </div>
       <div class="producto-body">
-        <h3>PRE-WORKOUT</h3>
-        <p>Energía explosiva para entrenamientos intensos</p>
+        <h3>WHEY PROTEIN</h3>
+        <p>ENA TrueMade — 25g proteína premium</p>
         <div class="producto-footer">
-          <div><div class="producto-price"><sup>$</sup>12.490</div></div>
-          <a href="https://wa.me/5491159114392?text=Hola!%20Quiero%20comprar%20PRE-WORKOUT" target="_blank" class="btn-comprar">Comprar</a>
+          <div><div class="producto-price"><sup>$</sup>52.000"</div></div>
+          <a href="https://wa.me/5491159114392?text=Hola!%20Quiero%20consultar%20precio%20de%20WHEY%20PROTEIN%20ENA" target="_blank" class="btn-comprar">Comprar</a>
         </div>
       </div>
     </div>
 
     <div class="producto-card">
-      <div class="producto-img">
-        <div class="producto-img-icon">🔥</div>
+      <div class="producto-img" style="background:none;padding:20px;">
+        <img src="images/proteinbar.jpeg" alt="Protein Bar Mervick" style="width:100%;height:100%;object-fit:contain;">
       </div>
       <div class="producto-body">
-        <h3>FAT BURNER</h3>
-        <p>Quemador de grasa termogénico avanzado</p>
+        <h3>PROTEIN BAR</h3>
+        <p>Mervick Lab — 21g proteína por barra</p>
         <div class="producto-footer">
-          <div><div class="producto-price"><sup>$</sup>18.990</div></div>
-          <a href="https://wa.me/5491159114392?text=Hola!%20Quiero%20comprar%20FAT%20BURNER" target="_blank" class="btn-comprar">Comprar</a>
+          <div><div class="producto-price"><sup>$</sup>19.000</div></div>
+          <a href="https://wa.me/5491159114392?text=Hola!%20Quiero%20consultar%20precio%20de%20PROTEIN%20BAR%20MERVICK" target="_blank" class="btn-comprar">Comprar</a>
         </div>
       </div>
     </div>
 
     <div class="producto-card">
-      <div class="producto-img">
-        <div class="producto-img-icon">💊</div>
-        <div class="producto-badge">-15%</div>
+      <div class="producto-img" style="background:none;padding:20px;">
+        <img src="images/creatinestar.jpeg" alt="Creatina Star" style="width:100%;height:100%;object-fit:contain;">
       </div>
       <div class="producto-body">
         <h3>CREATINA</h3>
-        <p>Monohidrato puro, 5g por porción</p>
+        <p>Star Nutrition — Monohidrato puro 5g</p>
         <div class="producto-footer">
-          <div>
-            <div class="producto-price"><sup>$</sup>10.190</div>
-            <div class="producto-price-old">$11.990</div>
-          </div>
-          <a href="https://wa.me/5491159114392?text=Hola!%20Quiero%20comprar%20CREATINA" target="_blank" class="btn-comprar">Comprar</a>
+          <div><div class="producto-price"><sup>$</sup>30.000</div></div>
+          <a href="https://wa.me/5491159114392?text=Hola!%20Quiero%20consultar%20precio%20de%20CREATINA%20STAR" target="_blank" class="btn-comprar">Comprar</a>
         </div>
       </div>
     </div>
 
     <div class="producto-card">
-      <div class="producto-img">
-        <div class="producto-img-icon">🥤</div>
+      <div class="producto-img" style="background:none;padding:20px;">
+        <img src="images/creatineena.jpeg" alt="Creatina ENA" style="width:100%;height:100%;object-fit:contain;">
       </div>
       <div class="producto-body">
-        <h3>BCAA</h3>
-        <p>Aminoácidos esenciales 2:1:1, recuperación muscular</p>
+        <h3>CREATINA</h3>
+        <p>ENA — Monohidrato micronizado 5g</p>
         <div class="producto-footer">
-          <div><div class="producto-price"><sup>$</sup>14.490</div></div>
-          <a href="https://wa.me/5491159114392?text=Hola!%20Quiero%20comprar%20BCAA" target="_blank" class="btn-comprar">Comprar</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="producto-card">
-      <div class="producto-img">
-        <div class="producto-img-icon">🍫</div>
-        <div class="producto-badge">POPULAR</div>
-      </div>
-      <div class="producto-body">
-        <h3>MASS GAINER</h3>
-        <p>Ganador de masa con 50g de proteína</p>
-        <div class="producto-footer">
-          <div><div class="producto-price"><sup>$</sup>22.990</div></div>
-          <a href="https://wa.me/5491159114392?text=Hola!%20Quiero%20comprar%20MASS%20GAINER" target="_blank" class="btn-comprar">Comprar</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="producto-card">
-      <div class="producto-img">
-        <div class="producto-img-icon">🌙</div>
-      </div>
-      <div class="producto-body">
-        <h3>CASEÍNA</h3>
-        <p>Proteína de liberación lenta, ideal para la noche</p>
-        <div class="producto-footer">
-          <div><div class="producto-price"><sup>$</sup>16.990</div></div>
-          <a href="https://wa.me/5491159114392?text=Hola!%20Quiero%20comprar%20CASEINA" target="_blank" class="btn-comprar">Comprar</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="producto-card">
-      <div class="producto-img">
-        <div class="producto-img-icon">🧬</div>
-        <div class="producto-badge">-20%</div>
-      </div>
-      <div class="producto-body">
-        <h3>GLUTAMINA</h3>
-        <p>Recuperación y soporte del sistema inmune</p>
-        <div class="producto-footer">
-          <div>
-            <div class="producto-price"><sup>$</sup>11.990</div>
-            <div class="producto-price-old">$14.990</div>
-          </div>
-          <a href="https://wa.me/5491159114392?text=Hola!%20Quiero%20comprar%20GLUTAMINA" target="_blank" class="btn-comprar">Comprar</a>
+          <div><div class="producto-price"><sup>$</sup>30.000</div></div>
+          <a href="https://wa.me/5491159114392?text=Hola!%20Quiero%20consultar%20precio%20de%20CREATINA%20ENA" target="_blank" class="btn-comprar">Comprar</a>
         </div>
       </div>
     </div>
@@ -355,89 +318,208 @@ footer{background:var(--black2);border-top:1px solid rgba(255,255,255,.08);paddi
   </div>
 </section>
 
-<!-- OFERTAS -->
-<section id="ofertas" class="ofertas-section">
-  <div class="ofertas-banner">
-    <div class="ofertas-content">
-      <div class="ob-tag">⚡ OFERTA FLASH</div>
-      <h2>Pack Definición <span>EXTREMA</span></h2>
-      <p>Whey Protein + Fat Burner + BCAA — Todo lo que necesitás para definir tu físico al máximo</p>
-      <div class="ofertas-timer">
-        <div class="timer-box"><div class="tb-num">12</div><div class="tb-label">Horas</div></div>
-        <div class="timer-box"><div class="tb-num">34</div><div class="tb-label">Minutos</div></div>
-        <div class="timer-box"><div class="tb-num">56</div><div class="tb-label">Segundos</div></div>
-      </div>
-      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
-        <div style="text-align:center;">
-          <div style="font-family:var(--fd);font-size:2.5rem;color:var(--neon-green);line-height:1;">$39.990</div>
-          <div style="font-size:.75rem;color:var(--dim);text-decoration:line-through;">$62.990</div>
-        </div>
-      </div>
-      <div style="margin-top:28px;">
-        <a href="https://wa.me/5491159114392?text=Hola!%20Quiero%20comprar%20el%20PACK%20DEFINICION%20EXTREMA" target="_blank" class="btn-primary">🔥 Aprovechar Oferta</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PLANES DE ENTRENAMIENTO -->
-<section id="planes">
-  <div class="sec-label">Entrená </div>
-  <h2 class="sec-title">Planes de <span>Entrenamiento</span></h2>
-  <div class="planes-grid">
+<!-- COMBOS -->
+<section id="combos" style="background:linear-gradient(180deg,var(--black) 0%,#0d0d0d 50%,var(--black) 100%);">
+  <div class="sec-label">Packs Especiales</div>
+  <h2 class="sec-title">Nuestros <span>Combos</span></h2>
+  <div class="productos-grid" style="grid-template-columns:repeat(3,1fr);max-width:1050px;">
     
-    <div class="plan-card">
-      <div class="plan-icon">🏋️</div>
-      <h3>PRINCIPIANTE</h3>
-      <p>Rutina completa para iniciarte en el mundo del fitness</p>
-      <ul class="plan-features">
-        <li>3 días de entrenamiento/semana</li>
-        <li>Ejercicios básicos explicados</li>
-        <li>Plan nutricional incluido</li>
-        <li>Soporte vía WhatsApp</li>
-      </ul>
-      <div class="plan-price">
-        <div class="pp-amount">$8.900</div>
-        <div class="pp-period">Por mes</div>
+    <div class="producto-card">
+      <div class="producto-img" style="background:none;padding:20px;height:240px;">
+        <img src="images/combrocrea.jpeg" alt="Combo Star + ENA" style="width:100%;height:100%;object-fit:contain;">
+        <div class="producto-badge" style="background:var(--neon-cyan);color:#000;">COMBO</div>
       </div>
-      <a href="https://wa.me/5491159114392?text=Hola!%20Quiero%20info%20sobre%20el%20PLAN%20PRINCIPIANTE" target="_blank" class="btn-outline" style="width:100%;">Consultar</a>
+      <div class="producto-body">
+        <h3>COMBO STAR + ENA</h3>
+        <p>Whey Protein Star + Creatina ENA</p>
+        <div class="producto-footer">
+          <div><div class="producto-price"><sup>$</sup>75.000</div></div>
+          <a href="https://wa.me/5491159114392?text=Hola!%20Quiero%20consultar%20precio%20del%20COMBO%20STAR%20+%20ENA" target="_blank" class="btn-comprar">Comprar</a>
+        </div>
+      </div>
     </div>
 
-    <div class="plan-card featured">
-      <div class="plan-icon">💪</div>
-      <h3>INTERMEDIO</h3>
-      <p>Programa avanzado para llevar tu físico al siguiente nivel</p>
-      <ul class="plan-features">
-        <li>5 días de entrenamiento/semana</li>
-        <li>Rutinas personalizadas</li>
-        <li>Plan nutricional detallado</li>
-        <li>Videos instructivos</li>
-        <li>Seguimiento semanal</li>
-      </ul>
-      <div class="plan-price">
-        <div class="pp-amount">$14.900</div>
-        <div class="pp-period">Por mes</div>
+    <div class="producto-card">
+      <div class="producto-img" style="background:none;padding:20px;height:240px;">
+        <img src="images/comboprotecrea2.jpeg" alt="Combo 2x ENA + Creatina" style="width:100%;height:100%;object-fit:contain;">
+        <div class="producto-badge" style="background:var(--neon-pink);color:#000;">POPULAR</div>
       </div>
-      <a href="https://wa.me/5491159114392?text=Hola!%20Quiero%20info%20sobre%20el%20PLAN%20INTERMEDIO" target="_blank" class="btn-primary" style="width:100%;">Consultar</a>
+      <div class="producto-body">
+        <h3>COMBO 2x ENA</h3>
+        <p>2 Whey Protein ENA + Creatina ENA</p>
+        <div class="producto-footer">
+          <div><div class="producto-price"><sup>$</sup>75.000</div></div>
+          <a href="https://wa.me/5491159114392?text=Hola!%20Quiero%20consultar%20precio%20del%20COMBO%202x%20ENA" target="_blank" class="btn-comprar">Comprar</a>
+        </div>
+      </div>
     </div>
 
-    <div class="plan-card">
-      <div class="plan-icon">🔥</div>
-      <h3>PROFESIONAL</h3>
-      <p>Entrenamiento de élite con coach personalizado</p>
-      <ul class="plan-features">
-        <li>6 días de entrenamiento/semana</li>
-        <li>Coach personal 1 a 1</li>
-        <li>Nutrición personalizada</li>
-        <li>Acceso a comunidad VIP</li>
-        <li>Videollamadas quincenales</li>
-        <li>Ajustes en tiempo real</li>
-      </ul>
-      <div class="plan-price">
-        <div class="pp-amount">$24.900</div>
-        <div class="pp-period">Por mes</div>
+    <div class="producto-card">
+      <div class="producto-img" style="background:none;padding:20px;height:240px;">
+        <img src="images/comboprotecrea.jpeg" alt="Combo Triple" style="width:100%;height:100%;object-fit:contain;">
+        <div class="producto-badge" style="background:var(--neon-orange);color:#000;">COMPLETO</div>
       </div>
-      <a href="https://wa.me/5491159114392?text=Hola!%20Quiero%20info%20sobre%20el%20PLAN%20PROFESIONAL" target="_blank" class="btn-outline" style="width:100%;">Consultar</a>
+      <div class="producto-body">
+        <h3>COMBO TRIPLE</h3>
+        <p>Whey Mervick + Whey ENA + Creatina ENA</p>
+        <div class="producto-footer">
+          <div><div class="producto-price"><sup>$</sup>67.000</div></div>
+          <a href="https://wa.me/5491159114392?text=Hola!%20Quiero%20consultar%20precio%20del%20COMBO%20TRIPLE" target="_blank" class="btn-comprar">Comprar</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ENTRENAMIENTO PERSONALIZADO -->
+<section id="planes">
+  <div class="sec-label">Entrená con Profesionales</div>
+  <h2 class="sec-title">Entrenamiento <span>Personalizado</span></h2>
+  <div style="max-width:900px;margin:0 auto;text-align:center;">
+    <div style="position:relative;border-radius:var(--r);overflow:hidden;border:2px solid rgba(0,255,136,.2);margin-bottom:32px;">
+      <img src="images/entrenamientospfj.jpeg" alt="Entrenamiento Personalizado" style="width:100%;height:auto;display:block;">
+    </div>
+    <p style="font-size:.88rem;color:var(--muted);margin-bottom:28px;max-width:650px;margin-left:auto;margin-right:auto;line-height:1.8;">Programas de entrenamiento diseñados específicamente para tus objetivos. Online y presencial. Fitness, fuerza y preparación física deportiva para todos los niveles.</p>
+    <a href="https://wa.me/5491159114392?text=Hola!%20Quiero%20consultar%20sobre%20ENTRENAMIENTO%20PERSONALIZADO" target="_blank" class="btn-primary" style="font-size:.8rem;padding:18px 48px;">💪 Consultar Entrenamiento</a>
+  </div>
+</section>
+
+<!-- PREGUNTAS FRECUENTES -->
+<section id="faq" style="background:linear-gradient(180deg,var(--black) 0%,#0d0d0d 50%,var(--black) 100%);">
+  <div class="sec-label">Información</div>
+  <h2 class="sec-title">Preguntas <span>Frecuentes</span></h2>
+  <div style="max-width:900px;margin:0 auto;">
+    
+    <!-- FAQ Item: Creatina -->
+    <div class="faq-item">
+      <div class="faq-question">
+        <h3>💊 ¿Para qué sirve la Creatina?</h3>
+        <div class="faq-icon">+</div>
+      </div>
+      <div class="faq-answer">
+        <div class="faq-benefit">
+          <div class="faq-benefit-icon">🏋️‍♂️</div>
+          <div>
+            <strong>Mejora del rendimiento físico</strong>
+            <p>Aumenta la fuerza y potencia, ideal para pesas, sprints y ejercicios explosivos. Permite hacer más repeticiones o más carga, lo que se traduce en mejores ganancias.</p>
+          </div>
+        </div>
+        <div class="faq-benefit">
+          <div class="faq-benefit-icon">💪</div>
+          <div>
+            <strong>Más masa muscular</strong>
+            <p>Favorece el aumento de masa muscular al mejorar el rendimiento y la recuperación. Hace que el músculo retenga más agua intracelular (no es grasa).</p>
+          </div>
+        </div>
+        <div class="faq-benefit">
+          <div class="faq-benefit-icon">⚡</div>
+          <div>
+            <strong>Más energía rápida</strong>
+            <p>Ayuda a producir ATP, la principal fuente de energía en esfuerzos cortos e intensos.</p>
+          </div>
+        </div>
+        <div class="faq-benefit">
+          <div class="faq-benefit-icon">🔄</div>
+          <div>
+            <strong>Mejor recuperación</strong>
+            <p>Reduce la fatiga muscular y el daño después de entrenar. Puede ayudar a entrenar más seguido y con mejor calidad.</p>
+          </div>
+        </div>
+        <div class="faq-benefit">
+          <div class="faq-benefit-icon">🧠</div>
+          <div>
+            <strong>Beneficios cognitivos (menos conocidos)</strong>
+            <p>Puede mejorar funciones como memoria, concentración y tiempo de reacción, sobre todo en personas con estrés mental o poco sueño.</p>
+          </div>
+        </div>
+        <div class="faq-benefit">
+          <div class="faq-benefit-icon">🦴</div>
+          <div>
+            <strong>Otros posibles beneficios</strong>
+            <p>Apoya la salud ósea junto con entrenamiento de fuerza. Puede ayudar a mantener masa muscular en adultos mayores.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Item: Proteína -->
+    <div class="faq-item">
+      <div class="faq-question">
+        <h3>🥤 ¿Para qué sirve la Proteína?</h3>
+        <div class="faq-icon">+</div>
+      </div>
+      <div class="faq-answer">
+        <div class="faq-benefit">
+          <div class="faq-benefit-icon">💪</div>
+          <div>
+            <strong>Aumento y mantenimiento de masa muscular</strong>
+            <p>Aporta los aminoácidos necesarios para construir músculo. Ideal si entrenás fuerza o querés evitar perder músculo.</p>
+          </div>
+        </div>
+        <div class="faq-benefit">
+          <div class="faq-benefit-icon">🏋️</div>
+          <div>
+            <strong>Mejor recuperación</strong>
+            <p>Ayuda a reparar el músculo después del entrenamiento. Puede reducir dolores y fatiga post-entreno.</p>
+          </div>
+        </div>
+        <div class="faq-benefit">
+          <div class="faq-benefit-icon">⏱️</div>
+          <div>
+            <strong>Comodidad y practicidad</strong>
+            <p>Rápida de preparar, fácil de llevar. Perfecta cuando no llegás a cubrir proteína solo con comida.</p>
+          </div>
+        </div>
+        <div class="faq-benefit">
+          <div class="faq-benefit-icon">🍽️</div>
+          <div>
+            <strong>Ayuda en pérdida de grasa</strong>
+            <p>La proteína da más saciedad, ayuda a controlar el apetito. Mantiene el músculo mientras bajás de peso.</p>
+          </div>
+        </div>
+        <div class="faq-benefit">
+          <div class="faq-benefit-icon">🦴</div>
+          <div>
+            <strong>Salud general</strong>
+            <p>Importante para huesos, piel, hormonas y sistema inmune. En adultos mayores ayuda a prevenir pérdida muscular (sarcopenia).</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Item: Cómo tomar -->
+    <div class="faq-item">
+      <div class="faq-question">
+        <h3>📅 ¿Cómo debo tomar los suplementos?</h3>
+        <div class="faq-icon">+</div>
+      </div>
+      <div class="faq-answer">
+        <p style="margin-bottom:16px;"><strong>Proteína:</strong> Lo ideal es tomar 1-2 scoops al día, especialmente post-entreno o entre comidas. Podés mezclarla con agua, leche o agregarla a batidos.</p>
+        <p><strong>Creatina:</strong> Se recomienda 5g al día (1 cucharadita), todos los días, independientemente de si entrenás o no. Podés tomarla en cualquier momento del día con agua o con tu batido de proteína.</p>
+      </div>
+    </div>
+
+    <!-- FAQ Item: Envíos -->
+    <div class="faq-item">
+      <div class="faq-question">
+        <h3>🚚 ¿Hacen envíos?</h3>
+        <div class="faq-icon">+</div>
+      </div>
+      <div class="faq-answer">
+        <p>Sí, realizamos envíos a todo el país. Consultanos por WhatsApp para coordinar el envío a tu zona y te pasamos los costos y tiempos de entrega.</p>
+      </div>
+    </div>
+
+    <!-- FAQ Item: Formas de pago -->
+    <div class="faq-item">
+      <div class="faq-question">
+        <h3>💳 ¿Qué formas de pago aceptan?</h3>
+        <div class="faq-icon">+</div>
+      </div>
+      <div class="faq-answer">
+        <p>Aceptamos transferencias bancarias, Mercado Pago y efectivo. Consultanos por WhatsApp para coordinar el método de pago que más te convenga.</p>
+      </div>
     </div>
 
   </div>
@@ -447,28 +529,28 @@ footer{background:var(--black2);border-top:1px solid rgba(255,255,255,.08);paddi
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">
-      <div class="fb-logo">JDD FIT</div>
+      <div class="fb-logo">JDD Fitness</div>
       <p>Suplementos deportivos de alta calidad para potenciar tu rendimiento y alcanzar tus objetivos fitness.</p>
     </div>
     <div class="footer-col">
       <h4>Navegación</h4>
       <ul>
         <li><a href="#productos">Productos</a></li>
-        <li><a href="#ofertas">Ofertas</a></li>
-        <li><a href="#planes">Planes de Entrenamiento</a></li>
+        <li><a href="#combos">Combos</a></li>
+        <li><a href="#planes">Entrenamiento</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h4>Contacto</h4>
       <ul>
         <li><a href="https://wa.me/5491159114392" target="_blank">📱 WhatsApp</a></li>
-        <li><a href="#">📧 info@jddfit.com</a></li>
+        <li><a href="#">📧 <span class="__cf_email__" data-cfemail="31585f575e71504154495f4445435845585e5f1f525e5c">[email&#160;protected]</span></a></li>
         <li><a href="#">🕐 Lun-Sáb: 9:00 - 20:00</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <p>© 2026 jddfit. Todos los derechos reservados. Potenciá tu rendimiento.</p>
+    <p>© 2026 JDD FITNESS. Todos los derechos reservados. Potenciá tu rendimiento.</p>
   </div>
 </footer>
 
@@ -492,17 +574,26 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   });
 });
 
-// Countdown timer (demo)
-function updateTimer() {
-  const hours = Math.floor(Math.random() * 24);
-  const mins = Math.floor(Math.random() * 60);
-  const secs = Math.floor(Math.random() * 60);
-  const timers = document.querySelectorAll('.timer-box .tb-num');
-  if(timers[0]) timers[0].textContent = String(hours).padStart(2, '0');
-  if(timers[1]) timers[1].textContent = String(mins).padStart(2, '0');
-  if(timers[2]) timers[2].textContent = String(secs).padStart(2, '0');
-}
-setInterval(updateTimer, 1000);
+// FAQ Accordion
+document.querySelectorAll('.faq-item').forEach(item => {
+  const question = item.querySelector('.faq-question');
+  
+  if(question) {
+    question.addEventListener('click', () => {
+      const wasActive = item.classList.contains('active');
+      
+      // Cerrar todos
+      document.querySelectorAll('.faq-item').forEach(faq => {
+        faq.classList.remove('active');
+      });
+      
+      // Abrir el actual si no estaba activo
+      if(!wasActive) {
+        item.classList.add('active');
+      }
+    });
+  }
+});
 
 // Intersection Observer for cards
 const observer = new IntersectionObserver((entries) => {
@@ -516,10 +607,8 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.producto-card, .plan-card').forEach((el, i) => {
   el.style.opacity = '0';
-  el.style.transform = 'translateY(25px)';
-  el.style.transition = `opacity .5s ease ${i % 4 * 0.08}s, transform .5s ease ${i % 4 * 0.08}s`;
+  el.style.transform = 'translateY(30px)';
+  el.style.transition = 'all 0.6s ease ' + (i * 0.1) + 's';
   observer.observe(el);
 });
 </script>
-</body>
-</html>
